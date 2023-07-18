@@ -135,9 +135,9 @@ b = datum.split(".")  # ['19','07','2023']
 ```
 liste = [1,2,3,4,5]
 liste2 = [6,7,8]
-liste1 + liste2  # [1,2,3,4,5,6,7,8]
-2 in liste  # True
-6 in liste  # False
+print(liste1 + liste2)  # [1,2,3,4,5,6,7,8]
+print(2 in liste)  # True
+print(6 in liste)  # False
 liste < liste2  # True --> Vergleich wird zeilenweise durchgeführt
 ```
 
@@ -174,3 +174,20 @@ sort() – sortiert die Werte in der Liste
 for i in range(len(farben)-1,-1,-1):
     print(farben[i])
 ```
+# Dictionaries
+* Schlüssel-Wert-Paare
+```
+students = {111 : "Max Mustermann", 
+            112 : "Erika Musterfrau",
+            113 : "Otto Normalverbraucher", 
+            114 : "Lieschen Müller"}
+print(students[111])  # Max Mustermann
+print(students.get(111))  # Max Mustermann
+students[111] = "Emty"  # Überschreiben des Eintrags 111
+````
+Mittels der Funktionen keys() und values() erhält man eine Sicht auf die Schlüssel bzw. Werte eines Dictionarys. Sicht heißt in diesem Fall, dass man eine Referenz auf die entsprechenden Schlüssel/Werte erhält und keine Kopie.
+````
+print(students.keys())  # dict_keys([111111, 111112, 111113, 111114])
+print(students.values())  # dict_values(['Max Mustermann', 'Erika Musterfrau', 'Otto Normalverbraucher', 'Lieschen Müller'])
+```
+
