@@ -20,9 +20,6 @@ random()                             # Random float:  0.0 <= x < 1.0
 uniform(2.5, 10.0)                   # Random float:  2.5 <= x <= 10.0
 3.1800146073117523
 
-expovariate(1 / 5)                   # Interval between arrivals averaging 5 seconds
-5.148957571865031
-
 randrange(10)                        # Integer from 0 to 9 inclusive
 7
 
@@ -52,11 +49,6 @@ setx()
 sety()
 setheading() | seth()
 home()
-circle()
-dot()
-stamp()
-clearstamp()
-clearstamps()
 undo()
 speed()
 pendown() | pd() | down()
@@ -65,8 +57,8 @@ pensize() | width()
 pen()
 isdown()
 ```
-
-# if-else Anweisungen
+# Kontrollstrukturen (Anweisungen)
+## if-else
 ```
 def is_number(a) :
     if type(a) == int:
@@ -80,7 +72,7 @@ print(is_number(7.3))  # True
 print(is_number("Hallo"))  # False
 ```
 
-# while Anweisung
+## while
 Eine while-Anweisung wird verwendet, um eine Folge von Anweisungen zu wiederholen, wenn eine bestimmte Bedingung erfüllt ist
 ```
 i = 1
@@ -90,7 +82,7 @@ while i < 10:
 ```
 Die Schleife wird mehrmals (9 mal) durchlaufen. Die Abfrage (i<10) wird einmal mehr, d.h. 10 mal durchlaufen.
 
-# for Anweisung
+## for
 Eine for-Anweisung ist eine Wiederholungsanweisung, die man für eine bekannte Folge von Werten durchführen möchte.
 ```
 for <Variable> in <Sequenz> :
@@ -102,21 +94,22 @@ for <Variable> in <Sequenz> :
 
 <Anweisungen> werden für jeden der Werte der Folge einmal ausgeführt
 
-# range Funktion
+# Funktionen
+## range-Funktion
 range(m) - erzeugt Sequenz der ganzen Zahlen von 0 bis m-1 (jeweils inklusive)
 
 range(n,m) - erzeugt Sequenz der ganzen Zahlen von n bis m-1 (jeweils inklusive)
 
 range(n,m,k) - erzeugt Sequenz der ganzen Zahlen von n (inklusive) bis echt kleiner m bei positiver Schrittweite k und von n (inklusive) bis echt größer m bei negativer Schrittweite k
 
-# find Funktion
+## find-Funktion
 ```
 text = "eGuten Morgen"
 index1 = text.find("en")  # 4
 print("index2:",text.find("en", index1 + 1))  # 11
 ```
 
-# split Funktion
+## split-Funktion
 ```
 text = "Guten Morgen"
 datum = "19.07.2023"
@@ -125,13 +118,13 @@ b = datum.split(".")  # ['19','07','2023']
 ```
 
 # Sprunganweisungen
-**return** beendet eine Funktion
+**return**: beendet eine Funktion
 
-**break** beendet eine Wiederholungsanweisung (while oder for)
+**break**: beendet eine Wiederholungsanweisung (while oder for)
 
-**continue** beendet die aktuelle Ausführung einer Wiederholungsanweisun
+**continue**: beendet die aktuelle Ausführung einer Wiederholungsanweisun
 
-# Liste
+# Listen
 ```
 liste = [1,2,3,4,5]
 liste2 = [6,7,8]
@@ -149,7 +142,7 @@ tupel1 + tupel2 = ("Berlin", "Leipzig", "Hannover", 1, 2, 3)
 In Listen und Tupel können auch Daten unterschiedlichen Tyos sein.
 ```
 
-# Slice
+## Slice
 Ein Teilbereich einer Sequenz nennt man einen Slice und kann diesen über den Operator [ ] bestimmen. Im folgenden sind i und j ganze Zahlen, die für einen Index stehen:
 
 [i] : Ergebnis ist der Wert der Sequenz an dem Index
@@ -160,7 +153,7 @@ Ein Teilbereich einer Sequenz nennt man einen Slice und kann diesen über den Op
 
 [:j] : ergebnis ist die Teilsequenz ab dem Anfang bis exklusive Index j
 
-# Ändern von Listen
+## Ändern von Listen
 ```
 insert(i, v) – fügt den Wert v an Index i ein; nachfolgende Elemente werden um eine Position verschoben
 remove(v) – entfernt den Wert v aus der Liste, falls vorhanden!
@@ -169,10 +162,11 @@ reverse() – kehrt die Reihenfolge der Werte in der Liste um
 sort() – sortiert die Werte in der Liste
 ```
 
-# Beispiel: Umkehren einer Liste ohne python eigene Funktionen
+### Beispiel: Umkehren einer Liste ohne python eigene Funktionen
 ```
+farben = ['blue', 'green', 'magenta', 'red', 'yellow']
 for i in range(len(farben)-1,-1,-1):
-    print(farben[i])
+    print(farben[i])   # ['yellow','red','magenta','green','blue']
 ```
 # Dictionaries
 * Schlüssel-Wert-Paare
@@ -183,7 +177,7 @@ students = {111 : "Max Mustermann",
             114 : "Lieschen Müller"}
 print(students[111])  # Max Mustermann
 print(students.get(111))  # Max Mustermann
-students[111] = "Emty"  # Überschreiben des Eintrags 111
+students[111] = "Empty"  # Überschreiben des Eintrags 111
 ```
 Mittels der Funktionen keys() und values() erhält man eine Sicht auf die Schlüssel bzw. Werte eines Dictionarys. Sicht heißt in diesem Fall, dass man eine Referenz auf die entsprechenden Schlüssel/Werte erhält und keine Kopie.
 ```
@@ -202,7 +196,8 @@ dtype – Datentyp der erzeugten Werte
 ```
 ## linspace
 ```
-linspace(start, stop, num=50, endpoint=True, retstep=False)
+import numpy as np
+np.linspace(start, stop, num=50, endpoint=True, retstep=False)
 start , stop – erster , letzter Wert
 num – Anzahl der Werte
 endpoint – wenn True, dann inklusive Wert stop, sonst exklusiv
@@ -320,6 +315,27 @@ for line in lines:     # iterieren durch alle Texte/Zeilen der Liste
     y = int(point[2])
     points.append((name,x,y))  # Tupel an das Ende der Liste anfügen
 ```
+Lesen:
+```
+def avgrade(dateiname):
+    # Startpunkt der Notensumme und Anzahl der Gesamtnoten
+    summe = 0
+    anz = 0
+    # Datei mit Lesezugriff (r) öffnen
+    with open(dateiname, 'r') as datei:
+        for zeile in datei:
+            # Aufteilen der Zeile in Nachname, Vorname, Matrikelnummer und Note
+            nachname, vorname, matrikelnummer, note = zeile.split(', ')
+            
+            # Die Einzelnoten zur Summe hinzufügen
+            summe += float(note)
+            # Die Anzahl der Noten erhöhen
+            anz += 1
+
+    # Durchschnitt berechnen
+    durchschnitt = summe / anz
+    return durchschnitt
+```
 Schreiben:
 ```
 def anonlist(filename):
@@ -364,3 +380,77 @@ except :
 ```
 
 # Klassen
+* Ergänzung um eigene Datentypen
+```
+__init__ (Konstruktor) legt die Eigenschaften des Objekts fest
+```
+```
+class Datum:
+    def __init__(self, yy, mm, dd):
+            self.dd = dd
+            self.mm = mm
+            self.yy = yy
+            if dd <= 0 or dd > 31:
+                raise ValueError("Invalid Date")
+            if mm <= 0 or mm > 12:
+                raise ValueError("Invalid Date")
+            if mm == 2 and dd > 29:
+                raise ValueError("Invalid Date") 
+
+    def __str__(self):
+        return str(self.dd) + "." + str(self.mm) + "." + str(self.yy)
+    
+    def __eq__(self, other):
+        return (self.dd, self.mm, self.yy) == (other.dd, other.mm, other.yy)
+    
+    def __lt__(self, other):
+        return (self.yy, self.mm, self.dd) < (other.yy, other.mm, other.dd)
+    
+    def quartal(self):
+        if self.mm <= 3:
+            return 1
+        if self.mm > 3 and self.mm <= 6:
+            return 2
+        if self.mm > 6 and self.mm <= 9:
+            return 3
+        if self.mm > 9 and self.mm <= 12:
+            return 4
+
+import Klassen as k
+class Person:
+    __anzpers = 0
+    def __init__(self, name, bday):
+        self.__name = name
+        self.__Datum = bday
+        Person.__anzpers += 1
+
+    def get_name(self):
+        return self.__name
+
+    def get_Datum(self):
+        return self.__Datum
+
+    @classmethod
+    def get_anzahl_personen(cls):
+        return cls.__anzpers
+
+if __name__ == "__main__":
+    d1 = Datum(2000,9,28)
+    #print(d1, "Quartal:", Datum.quartal(d1))
+
+    d1 = k.Datum(12, 5, 1996)
+    p1 = Person("Kevin", d1)
+    print("Name:", Person.get_name(p1), ", Geburtsdatum:", Person.get_Datum(p1))
+```
+## Zugriffsrechte
+__ privat
+
+_ protected
+
+## Beziehungen
+### Assoziation
+Objekt x benutzt Objekt y. Beispiel: Person benutzt/fährt ein Kraftfahrzeug
+### Aggregation
+Objekt x hat ein Objekt y. Beispiel: Kraftfahrzeug hat Türen
+### Spezialfall: Vererbung
+• Objekt x ist Spezialfall eines Objekts y. Beispiel: LKW ist Spezialfall von Kraftfahrzeug.
