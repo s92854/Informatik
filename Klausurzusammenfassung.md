@@ -309,7 +309,7 @@ lines = fobj.readlines()   # lines Liste mit allen Zeilen einer Datei
 
 points = []         # In points Liste Tupeln; jedes Tupel entspricht einem Punkt
 for line in lines:     # iterieren durch alle Texte/Zeilen der Liste
-    point = line.split(",")  # Zerlegen des Textes einer Zeile
+    point = line.split(",")  # Zerlegen des Textes einer Zeile  --> line.strip().split() löscht am Ende übrige Leerzeichen, etc.
     name = point[0]
     x = int(point[1])
     y = int(point[2])
