@@ -184,10 +184,183 @@ students = {111 : "Max Mustermann",
 print(students[111])  # Max Mustermann
 print(students.get(111))  # Max Mustermann
 students[111] = "Emty"  # Überschreiben des Eintrags 111
-````
+```
 Mittels der Funktionen keys() und values() erhält man eine Sicht auf die Schlüssel bzw. Werte eines Dictionarys. Sicht heißt in diesem Fall, dass man eine Referenz auf die entsprechenden Schlüssel/Werte erhält und keine Kopie.
-````
+```
 print(students.keys())  # dict_keys([111111, 111112, 111113, 111114])
 print(students.values())  # dict_values(['Max Mustermann', 'Erika Musterfrau', 'Otto Normalverbraucher', 'Lieschen Müller'])
 ```
 
+# Numpy
+Erstellung von Arrays [1 2 3]
+```
+arange(start, stop, step, dtype)
+start – Startwert (inklusive)
+stop – Endwert (exklusive)
+step – Schrittweite
+dtype – Datentyp der erzeugten Werte
+```
+## linspace
+```
+linspace(start, stop, num=50, endpoint=True, retstep=False)
+start , stop – erster , letzter Wert
+num – Anzahl der Werte
+endpoint – wenn True, dann inklusive Wert stop, sonst exklusiv
+retstep – wenn True, wird neben Array die Schrittweite zurückgeliefert
+```
+Ausgabe nur von float-Werten, da keine Schrittweite, sondern gewünschte Anzahl von Werten. Bsp.: [0. 1. 2. 3. 4. 5.]
+Konvertierung von Listen in Array, wenn Listeninhalte gleich lang sind
+```
+a = np.array([[1,2], [3,4], [5,6]])  # [[1 2] [3 4] [5 6]]
+np.array([[1,2], [3,4], [5]])  # error
+a[1,1]  # 4
+```
+
+## ndim & shape
+ndim: Dimension des Arrays --> für [[1,2] [3,4] [5,6]]  ndim = 2 --> für [[[1,2] [3,4] [5,6]]]  ndim = 3
+shape: Länge des Arrays bestimmen --> für [[1,2] [3,4] [5,6]]  shape = (3,2)
+
+## Spezielle Arrays
+```
+np.ones((7))  # [1. 1. 1. 1. 1. 1. 1.]
+np.zeros((5), int)  # [0 0 0 0 0]
+np.ones((3), bool)  # [True True True]
+np.zeros((4,4), int)
+[[0 0 0 0]
+ [0 0 0 0]
+ [0 0 0 0]
+ [0 0 0 0]]
+```
+## Rechnen mit Arrays
+Selber Shape und Type benötigt, sonst Fehler
+```
+a = np.array([1,2,3])  # [1 2 3]
+b = a * 3  # [3 6 9]
+b = a + 1  # [2 3 4]
+
+```
+
+# Matplot
+```
+import matplotlib.pyplot as plt
+
+plt.plot([-1, -6.3, 16, 23, 15, 100])  # Wenn nur eine Wertereihe gegeben, werden diese für y genommen, x Schrittweite ist 1
+plt.show()
+```
+
+![image](https://github.com/s92854/Informatik/assets/134683810/4b40344b-9b27-4858-96ad-a19c53c140ae)
+
+### Bedeutungen
+'o' : Punkte darstellen
+'--' : zu verbindende Linie gestrichelt
+'-' : durchgezogene Linie
+'r' für red, 'b' für blue, 'g' für green, usw.
+
+```
+days = list(range(1,6))
+TempCelsiusMax = [24.8, 28.9, 31.3, 23.7, 26.9]
+TempCelsiusMin = [19.6, 24.1, 24.7, 18.3, 17.5]
+plt.plot(days, TempCelsiusMax,
+         days, TempCelsiusMin)
+plt.xlabel('Tag')
+plt.ylabel('Temperatur (C)')
+```
+
+![image](https://github.com/s92854/Informatik/assets/134683810/76435d89-20fe-422a-81a7-da328fca45db)
+
+```
+import numpy as np
+
+x = np.linspace(0, 2 * np.pi, 50) # generiert Array mit 50 Werte im Bereich 0 .. 2*PI
+y = np.sin(x)  # generiert Array mit Werten sin(x) für alle Werte aus x
+#print(y)
+plt.plot(x,y)
+plt.show()
+```
+
+![image](https://github.com/s92854/Informatik/assets/134683810/08d8fbe6-0cfe-491f-bd06-a1554e2d9a4c)
+
+Werte übereinander plotten, Legende, Datei speichern
+```
+fig = plt.figure(figsize=(15,8),dpi=100)
+werte1 = [7, 11, 20, 8, 23, -8, 19, 9, 11, 4, -3, 5]
+werte2 = [3, 31, 7, 10, 14, -2, 16, 1, -5, -3, 3, 7]
+plt.plot(werte1, label='Werte1')
+plt.plot(werte2, label='Werte2')
+plt.legend(loc = 'upper right')
+fig.savefig('beispielplot')
+```
+
+![image](https://github.com/s92854/Informatik/assets/134683810/883b3c5d-667c-4fbd-85cb-5828a70ec36a)
+
+# Dateien
+```
+fobj = open("points.txt","r")
+
+r – für „read“, w – für „write“, d.h. schreiben; dabei wird eine vorhandene Datei zuerst gelöscht
+a - für „append“; es wird am Ende einer ggf. vorhandenen Datei geschrieben
+b – zum Öffnen im Binärmodus; hier handelt es sich um eine zusätzliche Angabe zu den vorigen Modi
+
+fobj.close()
+
+readline – zum Lesen einer einzelnen Zeile in einen String          # lines = fobj.readline()  # Zeile 1 der geöffneten Datei
+readlines – zum Lesen aller Zeilen in eine Liste von Strings        # lines = fobj.readlines()  # ['Zeile 1\n','Zeile 2\n','Letzte Zeile']
+read – zum Lesen des Inhalts der gesamten Datei in einen String     # lines = fobj.readline()  #  Zeile 1
+                                                                                                  Zeile 2
+                                                                                                  Letzte Zeile
+```
+```
+lines = fobj.readlines()   # lines Liste mit allen Zeilen einer Datei
+
+points = []         # In points Liste Tupeln; jedes Tupel entspricht einem Punkt
+for line in lines:     # iterieren durch alle Texte/Zeilen der Liste
+    point = line.split(",")  # Zerlegen des Textes einer Zeile
+    name = point[0]
+    x = int(point[1])
+    y = int(point[2])
+    points.append((name,x,y))  # Tupel an das Ende der Liste anfügen
+```
+Schreiben:
+```
+def anonlist(filename):
+    # Erstellen der Datei und Hinzufügen der Endung _anonym
+    anonym_filename = filename.split('.')[0] + '_anonym.txt'
+
+    with open(filename, 'r') as file:
+            # Anfordern des Schreibzugriffs
+            with open(anonym_filename, 'w') as anonym_file:
+                # Erstellung des Counters
+                counter = 1
+                for line in file:
+                    # Splitten der Eigenschaften (Nachname, Vorname, Matrikelnummer und Note)
+                    parts = line.strip().split(', ')
+                    # Die Anzahl der Eigenschaften muss 4 betragen, damit die Noten in die anonyme Datei übertragen werden
+                    if len(parts) == 4:
+                        # Zugriff auf Position 3 (Note)
+                        note = parts[3]
+                        # Schreiben der Nummer und Note in die Textdatei und Erhöhung des Counters um 1
+                        anonym_file.write("{}: {}\n".format(counter,note))
+                        counter += 1
+    return anonym_filename
+```
+
+# Ausnahmebehandlungen
+**ValueError** : tritt auf, wenn eine Zeichenkette versucht wird als ein Zahlenwert zu interpretieren, die Zeichenkette aber nicht dem entsprechenden Typ entspricht
+
+**ZeroDivisionError** : tritt bei Division durch 0 auf
+
+**IOError** : tritt beim Zugriff auf Dateien auf
+
+**IndexError** : tritt auf, wenn bei einer Sequenz ein falscher Index verwendet wird
+
+```
+try :
+except ValueError :
+    print("Falsches Zahlenformat bei Eingabe!")
+except ZeroDivisionError :
+    print("Division durch 0 ist nicht erlaubt!")
+except :
+    print("unbekannter Fehler")
+```
+
+# Klassen
